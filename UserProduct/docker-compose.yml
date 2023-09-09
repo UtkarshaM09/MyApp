@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  productService:
+    container_name: product_app_container0
+    image: product_app_image0
+    build: ./
+    ports:
+      - 1111:1111
+    networks:
+      - mynetwork0
+    depends_on:
+      - mongoService
+
+  mongoService:
+    container_name: mongo_container0
+    image: mongo:3.6
+    ports:
+      - 27017:27017
+    networks:
+      - mynetwork0
+
+networks:
+  mynetwork0:
+    driver: bridge
+
